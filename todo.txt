@@ -1,3 +1,4 @@
 1.intellij application.properties write
 2.setup Angular cli using "npm install -g @angular/cli"
+3. run using "ng serve" in vroom_angular folder
 
