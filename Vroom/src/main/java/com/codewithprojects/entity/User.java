@@ -1,2 +1,4 @@
-package com.codewithprojects.entity;public class User {
+package com.codewithprojects.entity;
+
+public class User {
 }
