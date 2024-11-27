@@ -3,11 +3,18 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "vroom_angular": {
+    "V_FE": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
         }
       },
       "root": "",
@@ -17,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/vroom_angular",
+            "outputPath": "dist/v-fe",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -29,23 +36,12 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
-                "output": "/assets/"
               }
             ],
             "styles": [
-              "src/theme.less",
               "src/styles.scss"
             ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -57,8 +53,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
                 }
               ],
               "outputHashing": "all"
@@ -75,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "vroom_angular:build:production"
+              "buildTarget": "V_FE:build:production"
             },
             "development": {
-              "buildTarget": "vroom_angular:build:development"
+              "buildTarget": "V_FE:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -111,6 +107,6 @@
     }
   },
   "cli": {
-    "analytics": "638a8f7c-c78d-406b-9c27-dd8b02ecd6e3"
+    "analytics": false
   }
 }
