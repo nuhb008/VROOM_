@@ -27,9 +27,20 @@ export class SignupComponent {
       name: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]],
-      checkPassword: [null, [Validators.required]]
+      checkPassword: [null, [Validators.required,this.confirmationValidate]]
     })
   }
+  
+  //check password
+  confirmationValidate = (control : FormControl):{[s: string]: boolean} =>{
+    if(!control.value){
+      return{ required : true};
+    }
+    else if(control.value!==this.signupForm.controls['password'].value){
+      return {confirm: true, error : true};
+    }
+    return{};
+  };
 
   register() {
     if (this.signupForm.valid) {
