@@ -1,0 +1,99 @@
+/* General background color and styling for the entire page */
+.bg {
+    background-color: #F0F2F5; /* Soft background color */
+    padding: 20px 0;
+  }
+  
+  /* Centering and styling the form container */
+  .parent {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Child container to hold the form */
+  .child {
+    background-color: #fff;
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transform: translateY(-10%);
+    transition: all 0.3s ease;
+  }
+  
+  .child:hover {
+    transform: translateY(0);
+  }
+  
+  /* Heading styling */
+  .form-header {
+    font-size: 32px;
+    font-weight: 600;
+    color: #001529;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Form item styling */
+  nz-form-item {
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for form controls */
+  nz-form-control {
+    width: 100%;
+  }
+  
+  /* Input fields */
+  input[nz-input] {
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #e0e0e0;
+    width: 100%;
+  }
+  
+  input[nz-input]:focus {
+    border-color: #1890ff;
+    outline: none;
+  }
+  
+  /* Button styling */
+  .login-form-button {
+    width: 100%;
+    background-color: #001529;
+    color: white;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-form-button:hover {
+    background-color: #1890ff;
+  }
+  
+  /* Footer text for login link */
+  .form-footer {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #6c6c6c;
+  }
+  
+  .form-footer a {
+    color: #1890ff;
+    text-decoration: none;
+  }
+  
+  .form-footer a:hover {
+    text-decoration: underline;
+  }
+  

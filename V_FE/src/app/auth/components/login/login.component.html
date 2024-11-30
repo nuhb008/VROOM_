@@ -1,1 +1,51 @@
-<p>login works!</p>
+<div class="bg" style="background-color: #F0F2F5;">
+    <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+      <div class="parent">
+        <div class="child">
+          <div nz-row class="imgDiv">
+            <div nz-col nzSpan="24">
+              <h1 class="form-header">Log In</h1>
+            </div>
+          </div>
+          <form nz-form [formGroup]="loginForm">
+  
+            <!-- Email -->
+            <nz-form-item>
+              <nz-form-control nzHasFeedback nzErrorTip="The input is not valid E-mail!">
+                <input nz-input placeholder="E-mail" id="email" formControlName="email" />
+              </nz-form-control>
+            </nz-form-item>
+  
+            <!-- Password -->
+            <nz-form-item>
+              <nz-form-control nzHasFeedback [nzErrorTip]="passwordError">
+                <input nz-input placeholder="Password" type="password" id="password" formControlName="password" />
+                <ng-template #passwordError>
+                  <ng-container *ngIf="loginForm.get('password')?.hasError('required')">
+                    Password is required!
+                  </ng-container>
+                  <ng-container *ngIf="loginForm.get('password')?.hasError('pattern')">
+                    Password must contain 8 characters, 1 lowercase, 1 uppercase, 1 number, and 1 special character.
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+  
+            <!-- Submit Button -->
+            <button 
+              nz-button 
+              class="login-form-button login-form-margin" 
+              [nzType]="'primary'" 
+              (click)="login()"
+              [disabled]="loginForm.invalid">
+              Log In
+            </button>   
+            <div>
+                <p class="form-footer">Or <a routerLink="/signup">register now!</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </nz-spin>
+</div>
+  
