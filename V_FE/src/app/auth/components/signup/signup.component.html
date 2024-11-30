@@ -58,7 +58,8 @@
             nz-button 
             class="login-form-button login-form-margin" 
             [nzType]="'primary'" 
-            (click)="register()">
+            (click)="register()"
+            [disabled]="signupForm.invalid">
             Register
           </button>   
           <p class="form-footer">Or <a routerLink="/login">login now!</a></p>
