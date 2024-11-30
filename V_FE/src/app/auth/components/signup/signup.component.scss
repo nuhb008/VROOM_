@@ -86,13 +86,23 @@ input[nz-input]:focus {
   margin-top: 10px;
   font-size: 14px;
   color: #6c6c6c;
+  position: relative;
+  z-index: 1;  /* Ensure it's above other elements */
 }
 
 .form-footer a {
   color: #1890ff;
   text-decoration: none;
+  position: relative;
+  z-index: 2;  /* Ensure it's clickable */
+  pointer-events: auto; /* Allow click interaction */
 }
 
 .form-footer a:hover {
   text-decoration: underline;
+}
+
+/* Ensure the button doesn't overlap */
+.login-form-button {
+  z-index: 1; /* Ensures the button does not overlap the link */
 }

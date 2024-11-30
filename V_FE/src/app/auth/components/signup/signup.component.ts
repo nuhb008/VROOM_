@@ -6,10 +6,12 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-signup',
   standalone: true, 
-  imports: [CommonModule, NzSpinModule, NzFormModule, NzButtonModule,ReactiveFormsModule ],
+  imports: [CommonModule, NzSpinModule, NzFormModule, NzButtonModule,ReactiveFormsModule,RouterModule ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
@@ -20,7 +22,11 @@ export class SignupComponent {
 
   signupForm !: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,
+    private authService : AuthService,
+    private message : NzMessageService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -44,12 +50,28 @@ export class SignupComponent {
 
   register() {
     if (this.signupForm.valid) {
-      this.isSpinning = true;
-      console.log(this.signupForm.value); // Replace with actual API call
-      this.isSpinning = false;
+      this.isSpinning = true; // Show spinner
+      this.authService.register(this.signupForm.value).subscribe(
+        (res) => {
+          this.isSpinning = false; // Stop spinner
+  
+          if (res && res.id != null) { // Check if registration is successful
+            this.message.success("Signup Successful", { nzDuration: 5000 });
+            this.router.navigateByUrl("/login"); // Redirect to login
+          } else {
+            this.message.error("Something went wrong", { nzDuration: 5000 });
+          }
+        },
+        (error) => {
+          this.isSpinning = false; // Stop spinner on error
+          this.message.error("Registration failed. Please try again.", { nzDuration: 5000 });
+          console.error(error);
+        }
+      );
     } else {
       console.error('Form is invalid');
     }
   }
+  
 
 }
