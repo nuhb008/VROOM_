@@ -8,6 +8,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router, RouterModule } from '@angular/router';
+import { StorageService } from '../../services/storage/storage.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -35,6 +36,27 @@ export class LoginComponent {
     console.log('Login form submitted:', this.loginForm.value);
     this.authService.login(this.loginForm.value).subscribe((res) => {
       console.log(res);
+      if(res.userId!=null){
+        const user ={
+          id: res.userId,
+          role: res.userRole
+        }
+      
+      StorageService.saveUser(user);
+      StorageService.saveToken(res.jwt);
+      if(StorageService.isAdminLoggedIn()){
+        this.router.navigateByUrl("/admin/dashboard");
+
+      }
+      else if(StorageService.isCustomerLoggedIn()){
+        this.router.navigateByUrl("/customer/dashboard");
+      }
+      else{
+        this.message.error("Bad credentials",{nzDuration: 5000});
+      }
+
+    }
+
    })
    }  
     
