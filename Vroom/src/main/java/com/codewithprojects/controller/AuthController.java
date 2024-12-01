@@ -10,6 +10,7 @@ import com.codewithprojects.services.auth.AuthService;
 import com.codewithprojects.services.jwt.UserService;
 import com.codewithprojects.utils.JWTUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -47,25 +48,30 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public AuthenticationResponse login(@RequestBody AuthenticationRequest authenticationRequest) throws BadCredentialsException, DisabledException, UsernameNotFoundException {
+    public ResponseEntity<?> login(@RequestBody AuthenticationRequest authenticationRequest) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(), authenticationRequest.getPassword()));
-        } catch (BadCredentialsException badCredentialsException) {
-            throw new BadCredentialsException("Incorrect Email Or Password.");
+            final UserDetails userDetails = userService.userDetailsService().loadUserByUsername(authenticationRequest.getEmail());
+            Optional<User> optionalUser = userRepository.findFirstByEmail(userDetails.getUsername());
+            final String jwt = jwtUtil.generateToken(userDetails);
+
+            if (optionalUser.isPresent()) {
+                AuthenticationResponse authenticationResponse = new AuthenticationResponse();
+                authenticationResponse.setJwt(jwt);
+                authenticationResponse.setUserId(optionalUser.get().getId());
+                authenticationResponse.setUserRole(optionalUser.get().getUserRole());
+                return ResponseEntity.ok(authenticationResponse);
+            }
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
+        } catch (DisabledException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Account is disabled");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred");
         }
 
-        final UserDetails userDetails = userService.userDetailsService().loadUserByUsername(authenticationRequest.getEmail());
-
-        Optional<User> optionalUser = userRepository.findFirstByEmail(userDetails.getUsername());
-        final String jwt = jwtUtil.generateToken(userDetails);
-        AuthenticationResponse authenticationResponse = new AuthenticationResponse();
-
-        if (optionalUser.isPresent()) {
-            authenticationResponse.setJwt(jwt);
-            authenticationResponse.setUserId(optionalUser.get().getId());
-            authenticationResponse.setUserRole(optionalUser.get().getUserRole());
-        }
-        return authenticationResponse;
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Authentication failed");
     }
+
 
 }

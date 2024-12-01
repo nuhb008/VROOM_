@@ -1,5 +1,6 @@
 package com.codewithprojects.utils;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,9 @@ import java.util.Objects;
 import java.util.function.Function;
 @Component
 public class JWTUtil {
+
+    @Value("${JWT_KEY}")
+    String KEY;
 
     public String extractUserName(String token){
 
@@ -56,7 +60,7 @@ public class JWTUtil {
     }
 
     private Key getSigningKey() {
-        byte[] keyBytes = Decoders.BASE64.decode("413f44");
+        byte[] keyBytes = Decoders.BASE64.decode(KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
