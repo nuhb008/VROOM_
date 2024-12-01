@@ -32,12 +32,11 @@ export class LoginComponent {
   }
 
    login(): void {
-    if (this.loginForm.valid) {
-      console.log('Login form submitted:', this.loginForm.value);
-      // Implement login logic here
-    } else {
-      console.log('Login form is invalid.');
-    }
-  }
+    console.log('Login form submitted:', this.loginForm.value);
+    this.authService.login(this.loginForm.value).subscribe((res) => {
+      console.log(res);
+   })
+   }  
+    
 
 }

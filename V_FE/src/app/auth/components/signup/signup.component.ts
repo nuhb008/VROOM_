@@ -50,22 +50,22 @@ export class SignupComponent {
 
   register() {
     if (this.signupForm.valid) {
-      this.isSpinning = true; // Show spinner
+      this.isSpinning = false; // Show spinner
       this.authService.register(this.signupForm.value).subscribe(
         (res) => {
-          this.isSpinning = false; // Stop spinner
-  
-          if (res && res.id != null) { // Check if registration is successful
+          
+          if (res && res.id) { // Check if registration is successful
             this.message.success("Signup Successful", { nzDuration: 5000 });
             this.router.navigateByUrl("/login"); // Redirect to login
           } else {
             this.message.error("Something went wrong", { nzDuration: 5000 });
           }
+          this.isSpinning = false; // Stop spinner
         },
         (error) => {
-          this.isSpinning = false; // Stop spinner on error
           this.message.error("Registration failed. Please try again.", { nzDuration: 5000 });
           console.error(error);
+          this.isSpinning = false; // Stop spinner on error
         }
       );
     } else {
