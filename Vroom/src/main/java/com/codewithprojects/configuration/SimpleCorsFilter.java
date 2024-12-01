@@ -1,5 +1,7 @@
 package com.codewithprojects.configuration;
 
+
+
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,7 +14,6 @@ import java.io.IOException;
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class SimpleCorsFilter implements Filter {
-
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -37,4 +38,8 @@ public class SimpleCorsFilter implements Filter {
         }
     }
 
+    @Override
+    public void destroy() {
+        Filter.super.destroy();
+    }
 }
