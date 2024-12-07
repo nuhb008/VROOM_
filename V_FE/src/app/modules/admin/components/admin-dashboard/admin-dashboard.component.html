@@ -14,7 +14,12 @@
             <span>Color: <b>{{ car.color }}</b></span>
             <span>Transmission: <b>{{ car.transmission }}</b></span>
             <span>Type: <b>{{ car.type }}</b></span>
-            <span>Year: <b>{{ car.year | date: 'yyyy' }}</b></span>
+            <span>Year: <b>{{ car.year }}</b></span>
+        </div>
+        <div style="float: right;">
+  
+            <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" nzDanger
+            (click)="deleteCar(car.id)">Delete</button>
         </div>
     </div>
 </div>

@@ -12,7 +12,11 @@ import { NzMessageService } from 'ng-zorro-antd/message';
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent {
+
+
   cars: any[] = []
+
+  
 
   constructor(private adminService: AdminService, private message: NzMessageService){}
 
@@ -30,6 +34,20 @@ export class AdminDashboardComponent {
       });
     });
   }
+
+  deleteCar(id: number): void {
+    this.adminService.deleteCar(id).subscribe(
+      (response) => {
+        console.log('Car deleted successfully:', response); // Log the successful response
+        this.cars = this.cars.filter(car => car.id !== id); // Update the cars array
+        
+      },
+      (error) => {
+        console.error('Error deleting car:', error); // Log any errors that occur
+      }
+    );
+  }
+  
   
 
 }

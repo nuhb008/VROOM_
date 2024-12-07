@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
@@ -47,4 +47,12 @@ public class AdminController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @DeleteMapping("/car/{id}")
+    public ResponseEntity<Void>deleteCar(@PathVariable Long id){
+        adminService.deleteCar(id);
+        return ResponseEntity.ok(null);
+    }
+
+
 }
