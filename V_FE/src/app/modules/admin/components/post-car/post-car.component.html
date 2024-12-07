@@ -26,9 +26,21 @@
           <div>
             <nz-form-item>
               <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
-                <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Brand Name" [nzDropdownClassName]="'custom-dropdown'">
-                    <nz-option *ngFor="let brand of listOfBrands" nzLabel="{{ brand }}" nzValue="{{ brand }}"></nz-option>
-                  </nz-select>
+                <nz-select 
+                nzShowSearch 
+                nzAllowClear 
+                nzPlaceHolder="Select a Brand Name" 
+                [nzDropdownClassName]="'custom-dropdown'" 
+                formControlName="brand">
+                
+              
+                <nz-option 
+                  *ngFor="let brand of listOfBrands" 
+                  [nzLabel]="brand" 
+                  [nzValue]="brand">
+                </nz-option>
+                
+              </nz-select>
                   
               </nz-form-control>
             </nz-form-item>
@@ -52,9 +64,15 @@
                   nzShowSearch 
                   nzAllowClear 
                   nzPlaceHolder="Select a Type"
-                  [nzDropdownStyle]="{ maxHeight: '200px', overflow: 'auto' }"
-                  [nzDropdownClassName]="'custom-dropdown'">
-                  <nz-option *ngFor="let type of listOfType" nzLabel="{{type}}" nzValue="{{type}}"></nz-option>
+                  [nzDropdownClassName]="'custom-dropdown'" 
+                  nzSuffixIcon="down">
+                  
+                  <nz-option 
+                    *ngFor="let type of listOfType" 
+                    [nzLabel]="type" 
+                    [nzValue]="type">
+                  </nz-option>
+                  
                 </nz-select>
               </nz-form-control>
             </nz-form-item>
@@ -70,7 +88,7 @@
                 nzPlaceHolder="Select a Transmission"
                 formControlName="transmission" 
                   [nzDropdownStyle]="{ maxHeight: '200px', overflow: 'auto' }"
-                  [nzDropdownClassName]="'custom-dropdown'">
+                  [nzDropdownClassName]="'.custom-dropdown'">
                   <nz-option *ngFor="let transmission of listOfTransmission" nzLabel="{{transmission}}" nzValue="{{transmission}}"></nz-option>
                 </nz-select>
               </nz-form-control>

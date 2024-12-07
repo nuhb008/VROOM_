@@ -1,4 +1,5 @@
-/* General body and container styling */
+
+
 body, html {
     display: flex;
     justify-content: center;
@@ -7,7 +8,7 @@ body, html {
     margin: 0;
     background-color: #f4f7fa; /* Modern light grey background */
     font-family: 'Inter', sans-serif; /* Clean and modern font */
-  }
+}
   
   /* Form container */
 div[style*="margin-top"] {
@@ -40,7 +41,7 @@ input[nz-input],
 textarea[nz-input],
 /* Styling for nz-select input */
 nz-select {
-    display: block;
+    display: flex;
     width: 100%;
     margin-bottom: 18px;
     padding: 10px 14px;
@@ -52,7 +53,7 @@ nz-select {
     transition: border-color 0.3s, box-shadow 0.3s;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     position: relative; /* Ensure the parent is relative for absolute positioning */
-    z-index: 1; /* Ensure the select is above other elements */
+    z-index: 10; /* Ensure the select is above other elements */
   }
   
   /* Focus state for inputs and selects */
@@ -76,7 +77,7 @@ nz-select:focus {
   background-color: #f9fafb; /* Match the background of input fields */
   border-radius: 8px; /* Consistent rounded corners */
   border: 1px solid #ebe9e5; /* Subtle border */
-  outline: none;
+  outline: red;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Consistent shadow */
 }
 
@@ -92,27 +93,37 @@ nz-select:focus {
     background-color: #fff;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    z-index: 9999; /* Make sure it appears above the other UI elements */
+    z-index: 9999; /* Make sure it appears above other UI elements */
   }
   
-  /* Dropdown item styling */
-  .ant-select-item {
+.ant-select-item {
     padding: 12px 16px;
     font-size: 16px;
     color: #374151;
     transition: background-color 0.3s ease;
   }
   
-  /* Hover effect for dropdown items */
-  .ant-select-item:hover {
+.ant-select-item:hover {
     background-color: #f3f4f6; /* Light grey on hover */
     cursor: pointer;
   }
   
-  /* Selected item styling */
-  .ant-select-item-option-selected {
+.ant-select-item-option-selected {
     background-color: #e0f2fe;
     font-weight: 600;
+  }
+  
+.ant-select-dropdown {
+    overflow: hidden !important;
+    max-height: inherit !important;
+  }
+  
+.ant-select-dropdown-placement-bottomLeft {
+    top: calc(100% + 4px) !important;
+  }
+  
+.ant-select-item-option-content {
+    white-space: nowrap !important; /* Prevent items from stacking */
   }
   
 
