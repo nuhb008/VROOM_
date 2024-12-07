@@ -50,4 +50,9 @@ public class AdminServiceImpl implements AdminService {
         return carDtos;
     }
 
+    @Override
+    public void deleteCar(Long id) {
+        carRepository.deleteById(id);
+    }
+
 }
