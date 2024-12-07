@@ -8,14 +8,15 @@ public class CarDto {
 
     private  Long id;
     private String brand;
-    private String price;
+    private Long price;
     private String color;
     private String name;
     private String type;
     private String transmission;
     private String description;
-    private String year;
+    private Integer year;
 
     private MultipartFile image;
+
     private byte[] returnedImage;
 }

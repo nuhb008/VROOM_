@@ -1,12 +1,35 @@
 import { Component } from '@angular/core';
+import { AdminService } from '../../services/admin.service';
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './admin-dashboard.component.html',
-  styleUrl: './admin-dashboard.component.scss'
+  styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent {
+  cars: any[] = []
+
+  constructor(private adminService: AdminService, private message: NzMessageService){}
+
+  ngOnInit(){
+    this.getAllCars();
+  }
+
+  getAllCars() {
+    this.adminService.getAllCars().subscribe(res => {
+      console.log(res);
+      res.forEach((car: any) => {
+        car.processedImg = `data:image/jpeg;base64,${car.returnedImage}`; // Use backticks for string interpolation
+        this.cars.push(car);
+        console.log('Car Data:', car);
+      });
+    });
+  }
+  
 
 }

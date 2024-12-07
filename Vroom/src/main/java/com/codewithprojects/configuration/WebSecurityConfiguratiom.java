@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class WebSecurityConfiguratiom {
 
+
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UserService userService;
 

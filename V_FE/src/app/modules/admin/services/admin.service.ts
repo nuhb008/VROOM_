@@ -3,20 +3,28 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StorageService } from '../../../auth/services/storage/storage.service';
 
-const BASIC_URL=["http://localhost:8080"];
+const BASIC_URL='http://localhost:8080';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private storageService: StorageService) { }
 
   postCar(carDto:any):Observable<any>{
-    return this.http.post(BASIC_URL+"/api/admin/car",carDto,{
+    return this.http.post(BASIC_URL+"/api/admin/car", carDto,{
       headers: this.createAuthorizationHeader()
     });
 
+  }
+
+
+  getAllCars():Observable<any>{
+    return this.http.get(BASIC_URL+"/api/admin/cars",{
+      headers: this.createAuthorizationHeader()
+ 
+    });
   }
 
 
@@ -26,7 +34,13 @@ export class AdminService {
 
     return authHeaders.set(
       'Authorization',
-      `Bearer ${StorageService.getToken()}`
-    )
+      'Bearer ' + StorageService.getToken()
+    );
   }
+
+
+  
+
+
+
 }

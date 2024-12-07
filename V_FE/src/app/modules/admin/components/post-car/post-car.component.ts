@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   standalone: false,
   
   templateUrl: './post-car.component.html',
-  styleUrl: './post-car.component.scss'
+  styleUrls: ['./post-car.component.scss']
 })
 export class PostCarComponent {
 
@@ -58,12 +58,13 @@ export class PostCarComponent {
     formData.append('description', this.postCarForm.value.description)
     formData.append('price', this.postCarForm.value.price)
     console.log(formData);
-    this.adminService.postCar(formData).subscribe((res)=>{
+    this.adminService.postCar(formData).subscribe(res=>{
       this.isSpinning=false;
       this.message.success("Car posted successfully",{nzDuration:5000});
       this.router.navigateByUrl("/admin/dashboard");
       console.log(res);
     },error=>{
+      this.isSpinning = false;
       this.message.error("Error while posting car",{nzDuration:5000})
     })
   }
