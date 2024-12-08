@@ -7,16 +7,21 @@ import { CustomerDashboardComponent } from './components/customer-dashboard/cust
 import { NgZorroImportsModule } from '../../NgZorroImportsModule'
 //import { BookCarComponent } from './components/book-car/book-car.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-//import { MyBookingsComponent } from './components/my-bookings/my-bookings.component'
+import { BookCarComponent } from './components/book-car/book-car.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    BookCarComponent,
+    //CustomerDashboardComponent
+  ],
   imports: [
     CommonModule,
     CustomerRoutingModule,
     NgZorroImportsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class CustomerModule { }

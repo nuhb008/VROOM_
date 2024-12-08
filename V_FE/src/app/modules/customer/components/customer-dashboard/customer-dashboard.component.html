@@ -1,2 +1,27 @@
-<h1>Customer Dashboard</h1>
-<p>Welcome to the customer dashboard!</p>
+<div *ngFor="let car of cars" class="car-card">
+    <div class="car-image">
+        <img [src]="car.processedImg || 'default-placeholder.jpg'" alt="profile" />
+    </div>
+    <div class="car-details">
+        <h2 class="car-title">
+            {{ car.brand }} {{ car.name }}
+        </h2>
+        <p class="car-description">
+            {{ car.description || 'No description available' }}
+        </p>
+        <div class="car-info">
+            <span>Price: <b>${{ car.price }}</b></span>
+            <span>Color: <b>{{ car.color }}</b></span>
+            <span>Transmission: <b>{{ car.transmission }}</b></span>
+            <span>Type: <b>{{ car.type }}</b></span>
+            <span>Year: <b>{{ car.year }}</b></span>
+        </div>
+        <div style="float: right;">
+            <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
+            [routerLink]="['/customer/book', car.id]">Book</button>
+  
+            <!-- <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" nzDanger
+            (click)="deleteCar(car.id)">Book</button> -->
+        </div>
+    </div>
+</div>
