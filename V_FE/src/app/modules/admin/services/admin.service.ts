@@ -33,6 +33,19 @@ export class AdminService {
     });
   }
 
+  getCarbyId(id:number):Observable<any>{
+    return this.http.get(BASIC_URL+"/api/admin/car/"+id,{
+      headers: this.createAuthorizationHeader()
+ 
+    });
+  }
+
+  updateCar(carId: number, carDto: any): Observable<any> {
+    return this.http.put(BASIC_URL+"/api/admin/car/"+carId, carDto, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
 
 
   private createAuthorizationHeader(): HttpHeaders {

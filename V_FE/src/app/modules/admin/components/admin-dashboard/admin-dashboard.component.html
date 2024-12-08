@@ -17,6 +17,8 @@
             <span>Year: <b>{{ car.year }}</b></span>
         </div>
         <div style="float: right;">
+            <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
+            [routerLink]="['/admin/car', car.id]">Update</button>
   
             <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" nzDanger
             (click)="deleteCar(car.id)">Delete</button>

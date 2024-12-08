@@ -1,0 +1,168 @@
+
+
+body, html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f7fa; /* Modern light grey background */
+    font-family: 'Inter', sans-serif; /* Clean and modern font */
+}
+  
+  /* Form container */
+div[style*="margin-top"] {
+  background-color: #ffffff; /* White background */
+  padding: 30px 40px;
+  border-radius: 12px; /* More rounded corners for a modern feel */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Elevated shadow for depth */
+  max-width: 500px;
+  width: 100%;
+  margin: auto; /* Center the box horizontally and vertically */
+  position: relative; /* Ensure the dropdown appears in the right place */
+  transition: all 0.3s ease-in-out; /* Smooth hover effects */
+}
+
+div[style*="margin-top"]:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Enhanced hover shadow */
+}
+
+/* Title styling */
+h1 {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+  color: #1f2937; /* Dark grey for better readability */
+  margin-bottom: 24px;
+}
+
+/* Form input fields */
+input[nz-input],
+textarea[nz-input],
+/* Styling for nz-select input */
+nz-select {
+    display: flex;
+    width: 100%;
+    margin-bottom: 18px;
+    padding: 10px 14px;
+    background-color: #f9fafb; /* Light grey for input background */
+    border-radius: 8px; /* Rounded inputs */
+    border: 1px solid #e5e7eb; /* Subtle border */
+    font-size: 16px;
+    color: #374151; /* Dark grey text */
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative; /* Ensure the parent is relative for absolute positioning */
+    z-index: 10; /* Ensure the select is above other elements */
+  }
+  
+  /* Focus state for inputs and selects */
+input[nz-input]:focus,
+textarea[nz-input]:focus,
+nz-select:focus {
+  border-color: #3b82f6; /* Highlight border on focus */
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2); /* Glow effect */
+}
+
+/* Modern dropdown styling for nz-select */
+.ant-select {
+  position: relative;
+  width: 100%;
+  z-index: 10; /* Ensures dropdown is above other elements */
+}
+
+/* Styling for the selected item and its border */
+.ant-select-selector {
+  padding: 10px 14px !important;
+  background-color: #f9fafb; /* Match the background of input fields */
+  border-radius: 8px; /* Consistent rounded corners */
+  border: 1px solid #ebe9e5; /* Subtle border */
+  outline: red;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Consistent shadow */
+}
+
+/* Styling for the dropdown menu */
+/* Styling for the dropdown menu in nz-select */
+.custom-dropdown {
+    position: absolute !important;
+    top: 100%; /* Align it right below the select box */
+    left: 0;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 9999; /* Make sure it appears above other UI elements */
+  }
+  
+.ant-select-item {
+    padding: 12px 16px;
+    font-size: 16px;
+    color: #374151;
+    transition: background-color 0.3s ease;
+  }
+  
+.ant-select-item:hover {
+    background-color: #f3f4f6; /* Light grey on hover */
+    cursor: pointer;
+  }
+  
+.ant-select-item-option-selected {
+    background-color: #e0f2fe;
+    font-weight: 600;
+  }
+  
+.ant-select-dropdown {
+    overflow: hidden !important;
+    max-height: inherit !important;
+  }
+  
+.ant-select-dropdown-placement-bottomLeft {
+    top: calc(100% + 4px) !important;
+  }
+  
+.ant-select-item-option-content {
+    white-space: nowrap !important; /* Prevent items from stacking */
+  }
+  
+
+
+/* Button styling */
+button[nz-button] {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #3b82f6; /* Modern blue */
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+button[nz-button]:hover {
+  background-color: #2563eb; /* Darker blue on hover */
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Profile image styling */
+.profile-badge {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.profile {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #3b82f6; /* Modern blue border */
+  transition: transform 0.3s ease-in-out;
+}
+
+.profile:hover {
+  transform: scale(1.05); /* Subtle hover zoom */
+} 
