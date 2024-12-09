@@ -10,7 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Stream;
 
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/customer")
 @RequiredArgsConstructor
@@ -25,6 +27,7 @@ public class CustomerController {
 
     @PostMapping("/car/book")
     public ResponseEntity<Void>bookACar(@RequestBody BookACarDto bookACarDto){
+        System.out.println("Received booking request: " + bookACarDto);
         boolean success= customerService.bookACar(bookACarDto);
         if(success) return ResponseEntity.status(HttpStatus.CREATED).build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -32,12 +35,17 @@ public class CustomerController {
 
     @GetMapping("/car/{carId}")
     public ResponseEntity<CarDto> getCarById(@PathVariable Long carId) {
-        CarDto carDto = customerService.getcarById(carId);
+        CarDto carDto = customerService.getCarById(carId);
 
-        if (carDto != null) {
-            return ResponseEntity.ok(carDto);
+        if (carDto == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        return ResponseEntity.ok(carDto);
+    }
+
+    @GetMapping("/car/bookings/{userId}")
+    public ResponseEntity<List<BookACarDto>> getBookingsByUserId(@PathVariable Long userId) {
+        return ResponseEntity.ok(customerService.getBookingsByUserId(userId));
     }
 
 

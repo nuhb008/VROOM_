@@ -1,0 +1,134 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 0;
+  }
+  
+  /* Calendar Container */
+  nz-date-picker {
+    display: inline-block;
+    padding: 10px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 8px !important;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 220px; /* Adjust based on design */
+  }
+  
+  nz-date-picker:hover,
+  nz-date-picker:focus-within {
+    border-color: #1677ff !important;
+    box-shadow: 0 2px 6px rgba(22, 119, 255, 0.3);
+  }
+  
+  /* Calendar Header (Year & Month Selectors) */
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    background-color: #1677ff;
+    color: #fff;
+    border-radius: 8px 8px 0 0;
+    font-weight: bold;
+  }
+  
+  .calendar-header button {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: color 0.3s;
+  }
+  
+  .calendar-header button:hover {
+    color: #ffcc00;
+  }
+  
+  /* Calendar Days */
+  .calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+  }
+  
+  .calendar-days span {
+    display: block;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .calendar-days span:hover {
+    background-color: #1677ff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .calendar-days span.today {
+    background-color: #ffcc00;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  /* Button Styling */
+  button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1677ff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #125ec2;
+    transform: scale(1.05);
+  }
+  
+  button:active {
+    background-color: #0e48a1;
+    transform: scale(0.95);
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    color: #888;
+    cursor: not-allowed;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 600px) {
+    nz-date-picker {
+      width: 100%; /* Full-width on small screens */
+    }
+  
+    .calendar-header {
+      font-size: 14px;
+    }
+  
+    .calendar-days span {
+      font-size: 12px;
+    }
+  
+    button {
+      width: 100%;
+    }
+  }
+  

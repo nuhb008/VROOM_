@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
   declarations: [
     PostCarComponent,
     UpdateCarComponent,
+   
     //AdminDashboardComponent
     
   ],
