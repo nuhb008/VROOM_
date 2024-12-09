@@ -18,6 +18,12 @@ export class AdminService {
     });
 
   }
+  searchCar(searchcarDto:any):Observable<any>{
+    return this.http.post(BASIC_URL+"/api/admin/car/search", searchcarDto,{
+      headers: this.createAuthorizationHeader()
+    });
+
+  }
 
   deleteCar(id:number):Observable<any>{
     return this.http.delete(BASIC_URL+"/api/admin/car/"+id,{

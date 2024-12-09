@@ -17,13 +17,18 @@ import en from '@angular/common/locales/en';
 import localeZh from '@angular/common/locales/zh';
 import { MyBookingsComponent } from './components/my-bookings/my-bookings.component';
 
+//import { SearchCarComponent } from './components/search-car/search-car.component';
+import { SerachCarComponent } from './components/serach-car/serach-car.component';
+
 registerLocaleData(en, 'en');
 
 @NgModule({
   declarations: [
     BookCarComponent,
     MyBookingsComponent,
-    //CustomerDashboardComponent
+    
+    SerachCarComponent,
+    
   ],
   imports: [
     CommonModule,

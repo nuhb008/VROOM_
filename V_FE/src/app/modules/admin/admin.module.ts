@@ -9,6 +9,8 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { UpdateCarComponent } from './components/update-car/update-car.component';
 import { RouterModule } from '@angular/router';
 import { GetBookingsComponent } from './components/get-bookings/get-bookings.component';
+import { SearchCarComponent } from './components/search-car/search-car.component';
+//import { SerachCarComponent } from './components/serach-car/serach-car.component';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import { GetBookingsComponent } from './components/get-bookings/get-bookings.com
     PostCarComponent,
     UpdateCarComponent,
     GetBookingsComponent,
+    SearchCarComponent,
+    
    
     //AdminDashboardComponent
     

@@ -2,6 +2,8 @@ package com.codewithprojects.services.admin;
 
 import com.codewithprojects.dto.BookACarDto;
 import com.codewithprojects.dto.CarDto;
+import com.codewithprojects.dto.CarDtoListDto;
+import com.codewithprojects.dto.SearchCarDto;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,5 +23,7 @@ public interface AdminService {
     List<BookACarDto> getBookings();
 
     boolean changebookingStatus(Long bookingId, String status);
+
+    CarDtoListDto searchCar(SearchCarDto searchCarDto);
 
 }
