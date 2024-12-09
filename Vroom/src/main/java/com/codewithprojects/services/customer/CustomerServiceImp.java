@@ -9,6 +9,7 @@ import com.codewithprojects.enums.BookCarStatus;
 import com.codewithprojects.repository.BookACarRepository;
 import com.codewithprojects.repository.CarRepository;
 import com.codewithprojects.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-
+import java.util.stream.Stream;
+//@Transactional
 @Service
 @RequiredArgsConstructor
 public class CustomerServiceImp implements CustomerService{
@@ -32,35 +34,64 @@ public class CustomerServiceImp implements CustomerService{
         return carRepository.findAll().stream().map(Car::getCarDto).collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
     public boolean bookACar(BookACarDto bookACarDto) {
-        Optional<Car>optionalCar=carRepository.findById(bookACarDto.getCarId());
-        Optional<User>optionalUser=userRepository.findById(bookACarDto.getUserId());
-        if (optionalCar.isPresent() && optionalUser.isPresent()) {
-            Car existingCar = optionalCar.get();
+        try {
+            // Fetch car and user from the database
+            Optional<Car> optionalCar = carRepository.findById(bookACarDto.getCarId());
+            Optional<User> optionalUser = userRepository.findById(bookACarDto.getUserId());
 
+            if (optionalCar.isEmpty() || optionalUser.isEmpty()) {
+                System.err.println("Car or User not found for IDs: CarId=" + bookACarDto.getCarId() +
+                        ", UserId=" + bookACarDto.getUserId());
+                return false;
+            }
+
+            Car existingCar = optionalCar.get();
+            User existingUser = optionalUser.get();
+
+            // Initialize and populate the booking entity
             BookACar bookACar = new BookACar();
-            bookACar.setUser(optionalUser.get());
+            bookACar.setUser(existingUser);
             bookACar.setCar(existingCar);
             bookACar.setBookCarStatus(BookCarStatus.PENDING);
 
+            // Calculate the number of days and total price
             long diffInMilliSeconds = bookACarDto.getToDate().getTime() - bookACarDto.getFromDate().getTime();
-            long days = TimeUnit.MICROSECONDS.toDays(diffInMilliSeconds);
+            long days = TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds) + 1; // Include start day
+            if (days <= 0) {
+                System.err.println("Invalid date range: fromDate=" + bookACarDto.getFromDate() +
+                        ", toDate=" + bookACarDto.getToDate());
+                return false;
+            }
 
             bookACar.setDays(days);
             bookACar.setPrice(days * existingCar.getPrice());
+            bookACar.setFromDate(bookACarDto.getFromDate());
+            bookACar.setToDate(bookACarDto.getToDate());
 
+            // Save the booking entity
             bookACarRepository.save(bookACar);
-            return true;
-        }
 
-        return false;
+            System.out.println("Booking saved successfully: " + bookACar);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error while booking a car", e);
+        }
+    }
+
+
+    @Override
+    public CarDto getCarById(Long carId) {
+        Optional<Car>optionalCar=carRepository.findById(carId);
+        return optionalCar.map(Car::getCarDto).orElse(null);
     }
 
     @Override
-    public CarDto getcarById(Long carId) {
-        Optional<Car>optionalCar=carRepository.findById(carId);
-        return optionalCar.map(Car::getCarDto).orElse(null);
+    public List<BookACarDto> getBookingsByUserId(Long userId) {
+        return bookACarRepository.findAllByUserId(userId).stream().map(BookACar::getBookACarDto).collect(Collectors.toList());
     }
 
 

@@ -10,6 +10,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select'
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker'
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker'
 import { NzUploadModule } from 'ng-zorro-antd/upload'
+import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n'
+import { NzTableModule } from 'ng-zorro-antd/table'
 
 
 @NgModule({
@@ -22,7 +24,11 @@ import { NzUploadModule } from 'ng-zorro-antd/upload'
     NzSelectModule,
     NzTimePickerModule,
     NzDatePickerModule,
-    NzUploadModule
+    NzUploadModule,
+    NzTableModule
+  ],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US },
   ]
 })
 export class NgZorroImportsModule {}

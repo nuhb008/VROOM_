@@ -1,7 +1,9 @@
 package com.codewithprojects.dto;
 
 import com.codewithprojects.enums.BookCarStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -10,8 +12,10 @@ public class BookACarDto {
 
     private Long id;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fromDate;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date toDate;
 
     private Long days;

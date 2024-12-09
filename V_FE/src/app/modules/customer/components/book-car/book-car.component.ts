@@ -3,25 +3,31 @@ import { CustomerService } from '../../service/customer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { StorageService } from '../../../../auth/services/storage/storage.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-book-car',
   standalone: false,
   
   templateUrl: './book-car.component.html',
-  styleUrl: './book-car.component.scss'
+  styleUrl: './book-car.component.scss',
+  providers: [DatePipe] 
 })
 export class BookCarComponent {
   processedImage: any;
   carId!:number
   validateForm!: FormGroup
-  //isSpinning: boolean = false
+  dateFormat: string = "YYYY-MM-DD";
+  isSpinning: boolean = false
 
   constructor(private service: CustomerService,
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private message: NzMessageService,
-    private router: Router
+    private router: Router,
+    private datePipe: DatePipe
+    
   ){}
   car: any;
 
@@ -36,8 +42,9 @@ export class BookCarComponent {
 
     this.getCarById()
   }
-  
- 
+
+
+
 
 
   private getCarById() {
@@ -48,8 +55,40 @@ export class BookCarComponent {
     })
   }
 
-  bookACar(data: any){
-    console.log(data);
+  bookACar(data: any) {
+    console.log('Original Input:', data);
+  
+    // Convert and format the dates
+    const fromDate = this.datePipe.transform(new Date(data.fromDate), 'yyyy-MM-dd');
+    const toDate = this.datePipe.transform(new Date(data.toDate), 'yyyy-MM-dd');
+  
+    // Debug the formatted dates
+    console.log('Formatted Dates:', { fromDate, toDate });
+  
+    const bookACarDto = {
+      fromDate: fromDate, // 'yyyy-MM-dd'
+      toDate: toDate,     // 'yyyy-MM-dd'
+      userId: StorageService.getUserId(),
+      carId: this.carId,
+    };
+  
+    // Call the API
+    this.service.bookACar(bookACarDto).subscribe(
+      (res) => {
+        this.isSpinning = false;
+        this.message.success('Car booked successfully', { nzDuration: 5000 });
+        this.router.navigateByUrl('/customer/dashboard');
+      },
+      (error) => {
+        this.isSpinning = false;
+        this.message.error('Error occurred while booking the car', { nzDuration: 5000 });
+      }
+    );
   }
-
+  
+  
+  
 }
+
+
+

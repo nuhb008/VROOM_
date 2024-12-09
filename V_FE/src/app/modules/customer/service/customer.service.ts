@@ -22,6 +22,16 @@ export class CustomerService {
       headers: this.createAuthorizationHeader()
     })
   }
+  getBookingsByUserId(): Observable<any> {
+    return this.http.get(`${BASIC_URL}/api/customer/car/bookings/${StorageService.getUserId()}`,{
+      headers: this.createAuthorizationHeader()
+    })
+  }
+  bookACar(bookACarDto:any): Observable<any> {
+    return this.http.post(`${BASIC_URL}/api/customer/car/book`,bookACarDto,{
+      headers: this.createAuthorizationHeader()
+    });
+  }
 
   private createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders()

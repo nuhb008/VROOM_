@@ -1,28 +1,76 @@
 <div style="background-color: #ccc; padding: 24px;" *ngIf="car">
-    <div style="padding-top: 10px;"></div>
-  
-    <div style="margin-top: 10px;" class="child">
-      <div style="background-color: #fff;  padding: 24px;">
-        <div>
-          <img class="profile w-1/2 m-auto" style="height: 230px; border-radius: 10px; object-fit: cover;"
-            [src]="processedImage" alt="profile">
-        </div>
-  
-        <div style="padding-top: 24px;">
-          <h2 style="cursor: pointer; color: #108ee9;">{{car.brand}} - {{car.name}}</h2>
-  
-          <p>{{car.description}}</p>
-  
-          <h5>Price: <b>${{car.price}}</b> - Color : <b>{{car.color}}</b> - Transmission : <b>{{car.transmission}}</b> -
-            Type : <b>{{car.type}}</b> - Year : <b>{{car.year}}</b>
-          </h5>
-        </div>
+  <div style="margin-top: 10px;" class="child">
+    <div style="background-color: #fff; padding: 24px;">
+      <div>
+        <img
+          class="profile w-1/2 m-auto"
+          style="height: 230px; border-radius: 10px; object-fit: cover;"
+          [src]="processedImage"
+          alt="Car Image"
+        />
+      </div>
+
+      <div style="padding-top: 24px;">
+        <h2 style="cursor: pointer; color: #108ee9;">
+          {{ car.brand }} - {{ car.name }}
+        </h2>
+        <p>{{ car.description }}</p>
+
+        <h5>
+          Price: <b>${{ car.price }}</b> - Color: <b>{{ car.color }}</b> - Transmission:
+          <b>{{ car.transmission }}</b> - Type: <b>{{ car.type }}</b> - Year: <b>{{ car.year }}</b>
+        </h5>
       </div>
     </div>
-  
-    <div class="flex justify-center pt-6">
-      <button style="min-width: 100px;" nzSize="small" nz-button nzType="primary" (click)="bookACar(validateForm.value)">
-        Book
-      </button>
-    </div>
   </div>
+
+  <!-- Booking Form -->
+  <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working ..." style="margin-top: 50px;">
+    <div class="dashboard-filter">
+      <form [formGroup]="validateForm">
+        <div class="filter-grid">
+          <div class="filter-select-dropdown filter-fields-width">
+            <!-- From Date -->
+            <nz-form-item style="margin-left: 50px;">
+              <nz-form-label [nzSpan]="0" nzFor="fromDate">From Date</nz-form-label>
+              <nz-form-control [nzSpan]="0">
+                <nz-date-picker
+                  formControlName="fromDate"
+                  style="width: 100%;"
+                  nzPlaceHolder="From Date"
+                  [nzFormat]="dateFormat"
+                  id="fromDate">
+                </nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+
+            <!-- To Date -->
+            <nz-form-item style="margin-left: 100px;">
+              <nz-form-label [nzSpan]="0" nzFor="toDate">To Date</nz-form-label>
+              <nz-form-control [nzSpan]="0">
+                <nz-date-picker
+                  formControlName="toDate"
+                  style="width: 100%;"
+                  nzPlaceHolder="To Date"
+                  [nzFormat]="dateFormat"
+                  id="toDate">
+                </nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <!-- Book Button -->
+          <div class="filter-select-dropdown filter-fields-width" style="text-align: center; margin-top: 20px;">
+            <button
+              nz-button
+              nzType="primary"
+              style="min-width: 120px;"
+              (click)="bookACar(validateForm.value)">
+              Book
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </nz-spin>
+</div>
