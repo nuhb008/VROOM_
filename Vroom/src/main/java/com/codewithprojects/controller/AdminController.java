@@ -2,6 +2,7 @@ package com.codewithprojects.controller;
 
 import com.codewithprojects.dto.BookACarDto;
 import com.codewithprojects.dto.CarDto;
+import com.codewithprojects.dto.SearchCarDto;
 import com.codewithprojects.entity.Car;
 import com.codewithprojects.services.admin.AdminService;
 import lombok.RequiredArgsConstructor;
@@ -94,6 +95,12 @@ public class AdminController {
         return ResponseEntity.notFound().build();
     }
 
+    @PostMapping("/car/search")
+    public ResponseEntity<?>searchCar(@RequestBody SearchCarDto searchCarDto){
+        System.out.println("Searching for cars with filters: " + searchCarDto);
+
+        return ResponseEntity.ok(adminService.searchCar(searchCarDto));
+    }
 
 
 

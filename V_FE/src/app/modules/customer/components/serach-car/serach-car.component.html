@@ -1,0 +1,81 @@
+<div class="container">
+    <!-- Form Container Section -->
+    <div class="form-container">
+      <div class="flex flex-col items-center">
+        <h1 class="text-xl font-bold text-gray-800 mb-4 text-center">Search Car</h1>
+        <form nz-form [formGroup]="searchCarForm" (ngSubmit)="searchCar()">
+          <!-- Brand Selection -->
+          <div class="form-item mb-4">
+            <nz-form-item>
+              <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
+                <nz-select formControlName="brand" nzShowSearch nzAllowClear nzPlaceHolder="Select a Brand">
+                  <nz-option *ngFor="let brand of listOfBrands" nzLabel="{{brand}}" nzValue="{{brand}}"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+  
+          <!-- Type Selection -->
+          <div class="form-item mb-4">
+            <nz-form-item>
+              <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
+                <nz-select formControlName="type" nzShowSearch nzAllowClear nzPlaceHolder="Select a Type">
+                  <nz-option *ngFor="let type of listOfType" nzLabel="{{type}}" nzValue="{{type}}"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+  
+          <!-- Transmission Selection -->
+          <div class="form-item mb-4">
+            <nz-form-item>
+              <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
+                <nz-select formControlName="transmission" nzShowSearch nzAllowClear nzPlaceHolder="Select a Transmission">
+                  <nz-option *ngFor="let transmission of listOfTransmission" nzLabel="{{transmission}}" nzValue="{{transmission}}"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+  
+          <!-- Color Selection -->
+          <div class="form-item mb-4">
+            <nz-form-item>
+              <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
+                <nz-select formControlName="color" nzShowSearch nzAllowClear nzPlaceHolder="Select a Color">
+                  <nz-option *ngFor="let color of listOfColor" nzLabel="{{color}}" nzValue="{{color}}"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+  
+          <!-- Search Button -->
+          <button nz-button class="login-form-button login-form-margin w-full" [nzType]="'primary'" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Car List Section -->
+    <div class="car-list-container mt-8">
+      <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Loading cars...">
+        <div *ngIf="!isSpinning && cars.length > 0" class="flex-wrap">
+          <div class="car-item" *ngFor="let car of cars">
+            <div class="bg-white shadow-lg rounded-lg p-4">
+              <img [src]="car.processedImage" alt="car" class="w-full h-32 object-cover object-center">
+              <div class="car-details mt-4">
+                <h2 class="text-gray-900 title-font text-lg font-medium">{{car.name}}</h2>
+                <p class="text-gray-500">{{car.brand}}</p>
+                <p class="text-gray-500">{{car.type}}</p>
+                <p class="text-gray-500">{{car.transmission}}</p>
+                <p class="text-gray-500">{{car.color}}</p>
+                <p class="text-gray-500">{{car.price}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!isSpinning && cars.length === 0" class="text-center text-gray-500">
+          No cars found for the given filters.
+        </div>
+      </nz-spin>
+    </div>
+  </div>
+  
