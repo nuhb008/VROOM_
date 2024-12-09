@@ -1,5 +1,6 @@
 package com.codewithprojects.controller;
 
+import com.codewithprojects.dto.BookACarDto;
 import com.codewithprojects.dto.CarDto;
 import com.codewithprojects.entity.Car;
 import com.codewithprojects.services.admin.AdminService;
@@ -75,6 +76,22 @@ public class AdminController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+    }
+
+    @GetMapping("/car/bookings")
+    public  ResponseEntity<List<BookACarDto>>getBookings(){
+        return ResponseEntity.ok(adminService.getBookings());
+    }
+
+    @GetMapping("/car/booking/{bookingId}/{status}")
+    private ResponseEntity<Void> changeBookingStatus(@PathVariable Long bookingId, @PathVariable String status) {
+        boolean isSuccessful = adminService.changebookingStatus(bookingId, status);
+
+        if (isSuccessful) {
+            return ResponseEntity.ok().build();
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
 

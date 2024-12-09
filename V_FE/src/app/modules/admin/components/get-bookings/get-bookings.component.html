@@ -1,0 +1,64 @@
+<nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+    <nz-table
+      #basicTable
+      [nzData]="bookings"
+      [nzBordered]="true"
+      [nzSize]="'middle'"
+      [nzShowPagination]="false"
+    >
+      <thead>
+        <tr>
+          <th style="font-weight: bold; color: #003973;">Username</th>
+          <th style="font-weight: bold; color: #003973;">Email</th>
+          <th style="font-weight: bold; color: #003973;">From</th>
+          <th style="font-weight: bold; color: #003973;">To</th>
+          <th style="font-weight: bold; color: #003973;">Days</th>
+          <th style="font-weight: bold; color: #003973;">Price</th>
+          <th style="font-weight: bold; color: #003973;">Status</th>
+          <th style="font-weight: bold; color: #730051;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of bookings">
+          <td>{{ booking.username }}</td>
+          <td>{{ booking.email }}</td>
+          <td>{{ booking.fromDate | date: 'MMM d, y' }}</td>
+          <td>{{ booking.toDate | date: 'MMM d, y' }}</td>
+          <td>{{ booking.days }}</td>
+          <td>{{ booking.price | currency }}</td>
+          <td>
+            <strong
+              [style.color]="
+                booking.bookCarStatus === 'APPROVED' ? 'green' :
+                booking.bookCarStatus === 'REJECTED' ? 'red' : 'orange'
+              ">
+              {{ booking.bookCarStatus }}
+            </strong>
+          </td>
+          <td>
+            <span *ngIf="booking.bookCarStatus === 'PENDING'">
+              <button
+                style="margin-right: 8px;"
+                nz-button
+                nzType="primary"
+                nzSize="small"
+                (click)="changeBookingStatus(booking.id, 'Approve')"
+              >
+                Approve
+              </button>
+              <button
+                nz-button
+                nzType="default"
+                nzDanger
+                nzSize="small"
+                (click)="changeBookingStatus(booking.id, 'Reject')"
+              >
+                Reject
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-spin>
+  
