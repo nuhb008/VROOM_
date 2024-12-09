@@ -1,2 +1,13 @@
-package com.codewithprojects.dto;public class SearchCarDto {
+package com.codewithprojects.dto;
+
+import lombok.Data;
+
+@Data
+public class SearchCarDto {
+
+    private String brand;
+    private String type;
+    private String transmission;
+    private String color;
+
 }

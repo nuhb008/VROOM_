@@ -32,6 +32,12 @@ export class AdminService {
  
     });
   }
+  getCarBookings():Observable<any>{
+    return this.http.get(BASIC_URL+"/api/admin/car/bookings",{
+      headers: this.createAuthorizationHeader()
+ 
+    });
+  }
 
   getCarbyId(id:number):Observable<any>{
     return this.http.get(BASIC_URL+"/api/admin/car/"+id,{
@@ -44,6 +50,15 @@ export class AdminService {
     return this.http.put(BASIC_URL+"/api/admin/car/"+carId, carDto, {
       headers: this.createAuthorizationHeader()
     })
+  }
+
+  changeBookingStatus(bookingId: number, status: string): Observable<any> {
+    return this.http.get(
+      `${BASIC_URL}/api/admin/car/booking/${bookingId}/${status}`,
+      {
+        headers: this.createAuthorizationHeader()
+      }
+    )
   }
 
 
