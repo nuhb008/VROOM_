@@ -24,7 +24,7 @@ Here’s the revised version of your **User Features** and **Admin Features** se
   ![Account Management](screenshots/sign.png)  
   ![Account Management](screenshots/login.png)  
   
-- **Booking **:
+- **Booking & Payment**:
   - Book vehicles in real-time, ensuring instant reservation confirmation.
   - View detailed booking information and rental terms on the user dashboard.
 
@@ -53,9 +53,7 @@ Here’s the revised version of your **User Features** and **Admin Features** se
 
   ![Booking Oversight](screenshots/a2.png)  
 
-- **Payment Management**:
-  - Monitor and reconcile payments, ensuring secure transactions and timely revenue processing.
-  - Resolve payment disputes or errors effectively.
+
 
 - **Vehicle Search & Filter**:
   - Easily search for vehicles .
