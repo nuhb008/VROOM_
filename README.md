@@ -6,72 +6,71 @@
 
 ## 🌟 Features and Functionalities
 
+Here’s the revised version of your **User Features** and **Admin Features** sections, now including image locations for each feature:
+
+---
+
 ### **User Features**
-- **Vehicle Search and Filter**:
-  - Search for vehicles by location, type (e.g., sedan, SUV, truck), or rental duration.
-  - Filter vehicles based on price range, features, and availability.
+- **Vehicle Search & Filter**:
+  - Easily search for vehicles .
+  - Use filters to sort vehicles by price range, features, and availability, helping users find the perfect match.
+  
+  ![Vehicle Search & Filter](screenshots/s2.png)  
+
 - **Account Management**:
-  - Register and log in securely.
-  - Manage profile details and view rental history.
-- **Booking and Payments**:
-  - Real-time booking of vehicles.
-  - Secure payment gateway for hassle-free transactions.
-  - View booking confirmations and rental details.
-- **Vehicle Reviews and Ratings**:
-  - Leave feedback on rented vehicles.
-  - View other users' reviews for better decision-making.
+  - Create a secure account or log in to manage personal details.
+  - View rental history, edit profile information, and track current bookings in one place.
+  
+  ![Account Management](screenshots/sign.png)  
+  ![Account Management](screenshots/login.png)  
+  
+- **Booking **:
+  - Book vehicles in real-time, ensuring instant reservation confirmation.
+  - View detailed booking information and rental terms on the user dashboard.
+
+  ![Booking & Payment](screenshots/b2.png)  
+
+---
 
 ### **Admin Features**
 - **Dashboard Overview**:
-  - View critical metrics such as total rentals, revenue, and vehicle availability.
-- **Vehicle Management**:
-  - Add, edit, and remove vehicles in the inventory.
-  - Update vehicle status (e.g., available, rented, under maintenance).
-- **User Management**:
-  - Manage user accounts, including the ability to deactivate or block accounts.
-- **Booking Oversight**:
-  - View, approve, or cancel bookings.
-  - Generate detailed reports on rentals and user activity.
-- **Payment Management**:
-  - Monitor and reconcile payments.
-  - Address payment disputes or errors.
+  - Get an overview of all critical metrics, including total rentals, revenue, active vehicles, and user activity.
+  - Monitor real-time data to stay updated on the platform’s operations.
 
-### **Additional Features**
-- **Responsive Design**:
-  - Fully optimized for desktop and mobile devices.
-- **Notifications**:
-  - Email and in-app notifications for booking updates and payment confirmations.
-- **Support System**:
-  - Integrated support ticketing for user inquiries and issues.
-- **Multi-Language Support**:
-  - Localized content for global accessibility.
-- **Data Security**:
-  - Encrypted storage for user and payment data.
+  ![Admin Dashboard Overview](screenshots/option.png)  
+
+- **Vehicle Management**:
+  - Admins can add new vehicles to the inventory, update vehicle details, and remove outdated or damaged vehicles.
+  - Change vehicle status (e.g., available, rented, under maintenance) as required.
+  
+  ![Vehicle Management](screenshots/post.png)  
+  ![Vehicle Management](screenshots/up.png)  
+
+
+- **Booking Oversight**:
+  - View, approve, or decline bookings made by customers.
+  - Generate detailed reports on rentals and user activity to better manage the platform.
+
+  ![Booking Oversight](screenshots/a2.png)  
+
+- **Payment Management**:
+  - Monitor and reconcile payments, ensuring secure transactions and timely revenue processing.
+  - Resolve payment disputes or errors effectively.
+
+- **Vehicle Search & Filter**:
+  - Easily search for vehicles .
+  - Use filters to sort vehicles by price range, features, and availability, helping users find the perfect match.
+  
+  ![Vehicle Search & Filter](screenshots/s2.png)  
 
 ## 🛠️ Technologies Used
 
-- **Frontend**: HTML, CSS, JavaScript (React/Angular/Vue.js)
-- **Backend**: Node.js with Express.js / Django / Laravel (choose the relevant one)
-- **Database**: MongoDB / MySQL / PostgreSQL
-- **Payment Gateway**: Stripe / PayPal
+- **Frontend**: HTML, CSS, Angular
+- **Backend**:SpringBoot java
+- **Database**: MySQL 
 - **Version Control**: Git and GitHub
-- **Hosting**: [GitHub Pages](https://pages.github.com/) or any cloud provider like AWS, Azure, or Heroku.
+- **Hosting**: [GitHub Pages](https://nuhb008.github.io/VROOM_/) 
 
-## 🚀 Deployment (GitHub Pages)
-
-1. Ensure you are in the root directory of your project.
-2. Run the following commands:
-   ```bash
-   npm run build
-   ```
-3. Deploy to GitHub Pages:
-   ```bash
-   git subtree push --prefix build origin gh-pages
-   ```
-4. Your application will be live at:
-   ```
-   https://<username>.github.io/VROOM_/
-   ```
 
 ## 🔧 Installation and Setup
 
@@ -99,25 +98,6 @@
    ```
    http://localhost:3000
    ```
-
-## 🤝 Contribution Guidelines
-
-We welcome contributions to improve VROOM! Follow these steps to contribute:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix:
-   ```bash
-   git checkout -b feature-name
-   ```
-3. Make your changes and commit:
-   ```bash
-   git commit -m "Add feature: description"
-   ```
-4. Push the branch:
-   ```bash
-   git push origin feature-name
-   ```
-5. Open a pull request to the `main` branch of this repository.
 
 ## 📄 License
 
