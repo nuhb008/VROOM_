@@ -63,7 +63,7 @@ Here’s the revised version of your **User Features** and **Admin Features** se
 
 ## 🛠️ Technologies Used
 
-- **Frontend**: HTML, CSS, Angular
+- **Frontend**: HTML, SCSS, Angular
 - **Backend**:SpringBoot java
 - **Database**: MySQL 
 - **Version Control**: Git and GitHub
